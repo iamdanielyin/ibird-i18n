@@ -2,7 +2,7 @@
   "name": "ibird-i18n",
   "version": "1.0.0-alpha.1",
   "description": "i18n addon for ibird.",
-  "main": "app/index.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yinfxs/ibird-i18n.git"
