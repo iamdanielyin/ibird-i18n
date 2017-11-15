@@ -1,0 +1,29 @@
+{
+  "name": "ibird-i18n",
+  "version": "1.0.0-alpha.1",
+  "description": "i18n addon for ibird.",
+  "main": "app/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yinfxs/ibird-i18n.git"
+  },
+  "keywords": [
+    "ibird",
+    "node",
+    "koa",
+    "web",
+    "app",
+    "http",
+    "application",
+    "addon",
+    "winston",
+    "logger",
+    "log"
+  ],
+  "author": "yinfxs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/yinfxs/ibird-i18n/issues"
+  },
+  "homepage": "https://github.com/yinfxs/ibird-i18n#readme"
+}
