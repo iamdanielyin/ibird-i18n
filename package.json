@@ -1,6 +1,6 @@
 {
   "name": "ibird-i18n",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "i18n addon for ibird.",
   "main": "index.js",
   "repository": {
@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/yinfxs/ibird-i18n/issues"
   },
-  "homepage": "https://github.com/yinfxs/ibird-i18n#readme"
+  "homepage": "https://github.com/yinfxs/ibird-i18n#readme",
+  "dependencies": {
+    "ibird-utils": "^0.9.17"
+  }
 }

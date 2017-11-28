@@ -2,6 +2,8 @@
  * 国际化模块
  */
 
+const utility = require('ibird-utils');
+const namespace = 'ibird-i18n';
 
 /**
  * 语言环境集合
@@ -23,12 +25,31 @@ const enabled = {
  * @param autoSwitch 是否自动切换
  */
 function setLocale(name, locale, autoSwitch) {
-    if (!name || !locale) return;
+    if (!name) return;
+    if (typeof name === 'string' && !locale) return;
+    if (typeof name === 'object') {
+        locale = name.locale;
+        autoSwitch = name.autoSwitch;
+        name = name.name;
+    }
     locales[name] = locale;
     autoSwitch = (typeof autoSwitch === 'boolean') ? autoSwitch : true;
     if (autoSwitch) {
         switchLocale(name);
     }
+}
+/**
+ * 自动挂载国际化资源目录
+ * @param dir 文件目录
+ */
+function setLocaleDir(dir) {
+    utility.recursiveDir(dir, (obj, parse) => {
+        if (obj.name) {
+            setLocale(obj.name, obj.locale, obj.autoSwitch);
+        } else {
+            setLocale(parse.name, obj, false);
+        }
+    });
 }
 /**
  * 刪除语言环境
@@ -89,10 +110,11 @@ function onLoad(app) {
  * 导出模块
  */
 module.exports = {
-    namespace: 'ibird-i18n',
+    namespace,
     onLoad,
     enable: {
         setLocale,
+        setLocaleDir,
         switchLocale,
         removeLocale,
         getLocale,
