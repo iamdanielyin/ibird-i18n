@@ -9,6 +9,7 @@ const namespace = 'ibird-i18n';
  * 语言环境集合
  */
 const locales = {};
+const ctx = {};
 
 /**
  * 当前启用的语言环境
@@ -17,6 +18,24 @@ const enabled = {
     name: null,
     locale: {}
 };
+
+/**
+ * 加载插件
+ * @param app
+ * @param options
+ */
+function onLoad(app, options) {
+    ctx.app = app;
+    ctx.options = options || {};
+
+    const config = app.c();
+    // 注册所有配置
+    if (config.locales && Object.keys(config.locales).length > 0) {
+        Object.assign(locales, config.locales);
+    }
+    // 切换默认环境
+    switchLocale(config.defaultLocale);
+}
 
 /**
  * 设置语言环境
@@ -90,20 +109,6 @@ function getLocaleString(key, ...args) {
 
     const value = enabled.locale[key];
     return (typeof value === 'function') ? value.call(null, args) : value;
-}
-
-/**
- * 加载插件
- * @param app
- */
-function onLoad(app) {
-    const config = app.c();
-    // 注册所有配置
-    if (config.locales && Object.keys(config.locales).length > 0) {
-        Object.assign(locales, config.locales);
-    }
-    // 切换默认环境
-    switchLocale(config.defaultLocale);
 }
 
 /**
