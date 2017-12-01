@@ -35,6 +35,11 @@ function onLoad(app, options) {
     }
     // 切换默认环境
     switchLocale(config.defaultLocale);
+    
+    // 挂载目录
+    if (options.localesDir) {
+        setLocaleDir(options.localesDir);
+    }
 }
 
 /**
