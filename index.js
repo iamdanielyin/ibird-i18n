@@ -3,6 +3,7 @@
  */
 
 const utility = require('ibird-utils');
+const Mustache = require('mustache');
 const namespace = 'ibird-i18n';
 
 /**
@@ -35,10 +36,10 @@ function onLoad(app, options) {
     }
     // 切换默认环境
     switchLocale(config.defaultLocale);
-    
+
     // 挂载目录
-    if (options.localesDir) {
-        setLocaleDir(options.localesDir);
+    if (ctx.options.localesDir) {
+        setLocaleDir(ctx.options.localesDir);
     }
 }
 
@@ -107,13 +108,12 @@ function getLocale(name) {
 /**
  * 获取国际化值
  * @param key
- * @param args
+ * @param params
  */
-function getLocaleString(key, ...args) {
-    if (!key || !enabled.locale[key]) return null;
-
+function getLocaleString(key, params) {
     const value = enabled.locale[key];
-    return (typeof value === 'function') ? value.call(null, args) : value;
+    if (!key || !value) return null;
+    return Mustache.render(value, params);
 }
 
 /**

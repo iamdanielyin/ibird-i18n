@@ -1,7 +1,7 @@
 const i18n = require('../index');
 const zh_CN = require('./locales/zh_CN.json');
 const en_US = require('./locales/en_US.json');
-const hello_i18n = require('./locales/hello_i18n');
+const hello_i18n = require('./locales/hello_i18n.json');
 
 function c() {
     return {
@@ -22,7 +22,7 @@ console.log();
 
 console.log('==> 设置hello_i18n...');
 enable.setLocale('hello_i18n', hello_i18n);
-console.log(enable.getLocaleString('keywords', 'ibird-i18n'));
+console.log(enable.getLocaleString('keywords', { name: 'ibird-i18n' }));
 console.log();
 
 console.log('==> 切换en_US...');
