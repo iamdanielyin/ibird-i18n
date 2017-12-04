@@ -1,8 +1,8 @@
 {
   "name": "ibird-i18n",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "description": "i18n addon for ibird.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "mocha -s 500"
   },
@@ -35,6 +35,8 @@
   },
   "devDependencies": {
     "ibird": "^1.0.0-alpha.9",
-    "mocha": "^4.0.1"
+    "koa-session": "^5.5.1",
+    "mocha": "^4.0.1",
+    "supertest": "^3.0.0"
   }
 }
