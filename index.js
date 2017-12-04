@@ -13,14 +13,6 @@ const locales = {};
 const ctx = {};
 
 /**
- * 当前启用的语言环境
- */
-const enabled = {
-    name: null,
-    locale: {}
-};
-
-/**
  * 加载插件
  * @param app
  * @param options
@@ -31,51 +23,41 @@ function onLoad(app, options) {
 
     const config = app.c();
     // 注册所有配置
-    if (config.locales && Object.keys(config.locales).length > 0) {
-        Object.assign(locales, config.locales);
+    if (options.locales && Object.keys(options.locales).length > 0) {
+        Object.assign(locales, options.locales);
     }
-    // 切换默认环境
-    switchLocale(config.defaultLocale);
-
     // 挂载目录
-    if (ctx.options.localesDir) {
-        setLocaleDir(ctx.options.localesDir);
+    if (options.localesDir) {
+        addLocaleDir(options.localesDir);
     }
 }
 
 /**
- * 设置语言环境
+ * 添加语言环境
  * @param name 名称
  * @param locale 配置对象
- * @param autoSwitch 是否自动切换
  */
-function setLocale(name, locale, autoSwitch) {
+function addLocale(name, locale) {
     if (!name) return;
     if (typeof name === 'string' && !locale) return;
     if (typeof name === 'object') {
-        locale = name.locale;
-        autoSwitch = name.autoSwitch;
-        name = name.name;
+        locale = name.localeConfig;
+        name = name.localeName;
     }
     locales[name] = locale;
-    autoSwitch = (typeof autoSwitch === 'boolean') ? autoSwitch : true;
-    if (autoSwitch) {
-        switchLocale(name);
-    }
-    return enabled.locale;
 }
 /**
  * 自动挂载国际化资源目录
  * @param dir 文件目录
  */
-function setLocaleDir(dir) {
+function addLocaleDir(dir) {
     utility.recursiveDir(dir, (obj, parse) => {
-        if (obj.name) {
-            setLocale(obj.name, obj.locale, obj.autoSwitch);
+        if (obj.localeName && obj.localeConfig) {
+            addLocale(obj);
         } else {
-            setLocale(parse.name, obj, false);
+            addLocale(parse.name, obj);
         }
-    });
+    }, parse => ['.js', '.json'].indexOf(parse.ext) >= 0);
 }
 /**
  * 刪除语言环境
@@ -88,15 +70,12 @@ function removeLocale(name) {
 }
 
 /**
- * 切换语言环境
- * @param name 名称
- * @param locale 配置对象
+ * 清空所有语言环境
  */
-function switchLocale(name) {
-    if (!name) return;
-    enabled.name = name;
-    enabled.locale = locales[name] || {};
-    return enabled.locale;
+function clearLocale() {
+    for (const name in locales) {
+        removeLocale(name)
+    }
 }
 
 /**
@@ -104,23 +83,28 @@ function switchLocale(name) {
  * @param name 名称
  */
 function getLocale(name) {
-    return name ? (locales[name] || null) : enabled.locale;
+    return name ? (locales[name] || null) : null;
 }
 
 /**
- * 获取当前启用的语言环境
+ * 获取所有语言环境
  */
-function getEnabledLocale() {
-    return enabled;
+function getLocaleList() {
+    return locales;
 }
 
 /**
  * 获取国际化值
  * @param key
  * @param params
+ * @param localeOrName
  */
-function getLocaleString(key, params) {
-    const value = enabled.locale[key];
+function getLocaleString(key, params, localeOrName) {
+    const locale = (typeof localeOrName === 'string') ? locales[localeOrName] : localeOrName;
+    if (typeof locale !== 'object' || Object.keys(locale).length === 0) {
+        return null;
+    }
+    const value = locale[key];
     if (!key || !value) return null;
     return Mustache.render(value, params);
 }
@@ -132,12 +116,12 @@ module.exports = {
     namespace,
     onLoad,
     enable: {
-        setLocale,
-        setLocaleDir,
-        switchLocale,
+        addLocale,
+        addLocaleDir,
         removeLocale,
+        clearLocale,
         getLocale,
-        getEnabledLocale,
+        getLocaleList,
         getLocaleString
     }
 };

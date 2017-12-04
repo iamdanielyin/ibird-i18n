@@ -1,8 +1,11 @@
 {
   "name": "ibird-i18n",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "description": "i18n addon for ibird.",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha -s 500"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yinfxs/ibird-i18n.git"
@@ -27,7 +30,11 @@
   },
   "homepage": "https://github.com/yinfxs/ibird-i18n#readme",
   "dependencies": {
-    "ibird-utils": "^0.9.17",
+    "ibird-utils": "^0.9.18",
     "mustache": "2.3.0"
+  },
+  "devDependencies": {
+    "ibird": "^1.0.0-alpha.9",
+    "mocha": "^4.0.1"
   }
 }
