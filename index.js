@@ -62,6 +62,7 @@ function setLocale(name, locale, autoSwitch) {
     if (autoSwitch) {
         switchLocale(name);
     }
+    return enabled.locale;
 }
 /**
  * 自动挂载国际化资源目录
@@ -95,6 +96,7 @@ function switchLocale(name) {
     if (!name) return;
     enabled.name = name;
     enabled.locale = locales[name] || {};
+    return enabled.locale;
 }
 
 /**
@@ -102,7 +104,14 @@ function switchLocale(name) {
  * @param name 名称
  */
 function getLocale(name) {
-    return name ? (locales[name] || null) : null;
+    return name ? (locales[name] || null) : enabled.locale;
+}
+
+/**
+ * 获取当前启用的语言环境
+ */
+function getEnabledLocale() {
+    return enabled;
 }
 
 /**
@@ -128,6 +137,7 @@ module.exports = {
         switchLocale,
         removeLocale,
         getLocale,
+        getEnabledLocale,
         getLocaleString
     }
 };
