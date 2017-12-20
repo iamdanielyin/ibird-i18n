@@ -132,7 +132,7 @@ describe('i18n Routes', function () {
             .end(function (err, res) {
                 if (err) return done(err);
                 const data = res.body.data;
-                assert.deepEqual(data.length, 3, 'GET /i18n :' + JSON.stringify(res.body, null, 2));
+                assert.deepEqual(Object.keys(data).length, 3, 'GET /i18n :' + JSON.stringify(res.body, null, 2));
                 done();
             });
     });
