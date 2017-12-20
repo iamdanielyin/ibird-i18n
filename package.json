@@ -1,6 +1,6 @@
 {
   "name": "ibird-i18n",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "i18n addon for ibird.",
   "main": "lib/index.js",
   "scripts": {
