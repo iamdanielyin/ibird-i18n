@@ -34,7 +34,7 @@
     "mustache": "2.3.0"
   },
   "devDependencies": {
-    "ibird": "^1.0.0-alpha.11",
+    "ibird": "latest",
     "koa-session": "^5.5.1",
     "mocha": "^4.0.1",
     "supertest": "^3.0.0"
