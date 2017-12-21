@@ -11,7 +11,7 @@ const en_US = require('./locales/en_US.json');
 describe('i18n Import', function () {
     let app;
     beforeEach(function () {
-        i18nAddon.enable.clearLocale();
+        i18nAddon.api.clearLocale();
         app = require('ibird').newApp();
     });
 
@@ -42,7 +42,7 @@ describe('i18n Import', function () {
 describe('i18n APIs', function () {
     let app;
     beforeEach(function () {
-        i18nAddon.enable.clearLocale();
+        i18nAddon.api.clearLocale();
         app = require('ibird').newApp();
     });
 
@@ -79,7 +79,7 @@ describe('i18n APIs', function () {
 describe('i18n Routes', function () {
     let app;
     beforeEach(function () {
-        i18nAddon.enable.clearLocale();
+        i18nAddon.api.clearLocale();
         app = require('ibird').newApp();
     })
 
