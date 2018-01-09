@@ -28,9 +28,9 @@ describe('i18n Import', function () {
         assert.deepEqual(app.getLocaleList()['zh_TW'].locale, '繁體中文', 'zh_TW:' + JSON.stringify(app.getLocaleList()['zh_TW'], null, 2));
     });
 
-    it('options.localesDir', function () {
+    it('options.dir', function () {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.play(null);
         assert.deepEqual(Object.keys(app.getLocaleList()).length, 3, 'length:' + Object.keys(app.getLocaleList()).length);
@@ -60,7 +60,7 @@ describe('i18n APIs', function () {
 
     it('app.removeLocale', function () {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.play(null);
         app.removeLocale('en_US');
@@ -69,7 +69,7 @@ describe('i18n APIs', function () {
 
     it('app.getLocaleString', function () {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.play(null);
         assert.deepEqual(app.getLocaleString('keywords', { name: 'ibird' }, 'zh_TW'), 'ibird,node,koa', 'getLocaleList:' + JSON.stringify(app.getLocaleList(), null, 2));
@@ -85,7 +85,7 @@ describe('i18n Routes', function () {
 
     it('GET /i18n/:name', function (done) {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.play(null);
 
@@ -102,7 +102,7 @@ describe('i18n Routes', function () {
 
     it('GET /i18n/:name/switch', function (done) {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.keys = ['ibird'];
         app.use(session({ key: 'ibird:sess' }, app));
@@ -122,7 +122,7 @@ describe('i18n Routes', function () {
 
     it('GET /i18n', function (done) {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.play(null);
 
@@ -140,7 +140,7 @@ describe('i18n Routes', function () {
 
     it('GET /i18n?d=1', function (done) {
         app.import(i18nAddon, {
-            localesDir: path.resolve(__dirname, 'locales')
+            dir: path.resolve(__dirname, 'locales')
         });
         app.play(null);
 
