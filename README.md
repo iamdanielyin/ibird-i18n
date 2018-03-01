@@ -32,7 +32,7 @@ app.import(logger);
 }
 ```
 
-其中`locale`是个特别的`key`，它表示语言环境名称，一般即为对应语言的本地化翻译。
+其中`locale`是个特别的`key`，它表示语言环境名称，一般即为对应语言的本地化翻译。
 
 ## 插件信息
 
@@ -43,7 +43,7 @@ app.import(logger);
   - `dir` - 可选，字符串类型，国际化资源文件所在目录，指定后，该目录下所有文件都会被自动注册为国际化配置，且以文件名作为语言编码
 - **API**
   - `enabledLocale` - 对象类型，表示当前默认启用的语言环境，共包含`name`（语言编码）和`locale`（国际化配置）两个信息
-  - `addLocale(name, locale)` - 新增国际化配置函数，需传递两个参数：`name`（语言编码）和`locale`（国际化配置）
+  - `addLocale(name, locale)` - 新增国际化配置函数，需传递两个参数：`name`（语言编码）和`locale`（国际化配置）
   - `addLocaleDir(dir)` - 新增国际化配置目录
   - `switchLocale(name)` - 切换默认语言环境，需指定语言编码作为参数
   - `removeLocale(name)` - 删除指定的语言环境，需指定语言编码作为参数
@@ -99,4 +99,4 @@ app.getLocaleString('login_error', { login_user: 'admin' }, 'zh_CN')
 // return: 抱歉，账号 admin 登录失败，请稍后重试~
 ```
 
->模板渲染底层引擎为[mustache.js](https://www.npmjs.com/package/mustache)。
+>模板渲染底层引擎为[mustache.js](https://www.npmjs.com/package/mustache)。
