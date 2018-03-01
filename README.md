@@ -71,7 +71,7 @@ app.import(logger);
 
 `en_US.json`：
 
-```json
+```text
 {
   ...
   "login_error": "Username {{login_user}} login failed.",
@@ -81,7 +81,7 @@ app.import(logger);
 
 `zh_CN.json`：
 
-```json
+```text
 {
   ...
   "login_error": "抱歉，账号 {{login_user}} 登录失败，请稍后重试~",
@@ -99,4 +99,4 @@ app.getLocaleString('login_error', { login_user: 'admin' }, 'zh_CN')
 // return: 抱歉，账号 admin 登录失败，请稍后重试~
 ```
 
-模板渲染底层引擎为[mustache.js](https://www.npmjs.com/package/mustache)。
+>模板渲染底层引擎为[mustache.js](https://www.npmjs.com/package/mustache)。
