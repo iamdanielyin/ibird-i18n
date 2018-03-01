@@ -12,9 +12,9 @@ npm install ibird-i18n
 
 ```js
 const app = require('ibird').newApp();
-const logger = require('ibird-i18n');
+const i18n = require('ibird-i18n');
 
-app.import(logger);
+app.import(i18n, { defaultLocale: 'zh_CN' });
 ```
 
 ## 配置示例
