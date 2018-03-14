@@ -51,6 +51,8 @@ app.import(i18n, { defaultLocale: 'zh_CN' });
   - `getLocale(name)` - 根据语言编码，获取对应的国际化配置
   - `getLocaleList()` - 获取已注册的所有国际化配置列表
   - `getLocaleString(key, params, localeOrName)` - 常用API，获取指定占位符在指定语言环境下的国际化显示值，支持模板渲染
+  - `L(key, params, localeOrName)` - `getLocaleString`的别名函数
+  - `locale(key, params, localeOrName)` - `getLocaleString`的别名函数
 - **路由**
   - 根据语言编码查询对应的国际化配置接口：
     - name - `i18n_name`
